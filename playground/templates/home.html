@@ -2,42 +2,9 @@
 <html>
   <head>
     <title>Product CRUD</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 20px;
-        text-align: center;
-      }
-
-      .button-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .button {
-        display: inline-block;
-        padding: 12px 24px;
-        background-color: transparent;
-        color: #000;
-        border: 2px solid #000;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        margin: 10px;
-        cursor: pointer;
-        border-radius: 4px;
-        transition: background-color 0.3s ease;
-        outline: none;
-      }
-
-      .button:hover {
-        background-color: #e5e5e5;
-      }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   </head>
   <body>
     <h1>Product CRUD</h1>

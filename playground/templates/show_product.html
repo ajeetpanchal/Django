@@ -2,58 +2,26 @@
 <html>
   <head>
     <title>Show Product Form</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 20px;
-      }
-
-      h2 {
-        text-align: center;
-      }
-
-      form {
-        max-width: 400px;
-        margin: 0 auto;
-      }
-
-      input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-
-      input[type="submit"] {
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-
-      input[type="submit"]:hover {
-        background-color: #d32f2f;
-      }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/show_product.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   </head>
   <body>
     <h2>Show Product Form</h2>
     <form method="POST" action="/show-product">
       {% csrf_token %}
-      <input type="text" id="name" name="name" required /><br /><br />
+      <select id="name" name="name" required>
+        <option value="">Select a product</option>
+        {% for product in products %}
+        <option value="{{ product.name }}">{{ product.name }}</option>
+        {% endfor %}</select
+      ><br /><br />
 
       <input type="submit" value="Show" />
+    </form>
+    <form>
+      <input type="button" value="Back" onclick="history.go(-1)" />
+  
     </form>
   </body>
 </html>

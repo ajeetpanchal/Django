@@ -2,6 +2,62 @@ from django.shortcuts import render
 from .models import Product
 
 
+def show_product_form(request):
+    """show the product form and show all the available product in dropdown from the database
+
+    Args:
+        request (HttpRequest): Incoming client Http Request
+
+    Returns:
+        HttpResponse: On success render the show_product page with list of the products available in the database
+        On error render the error page with the message
+
+    """
+    try:
+        # get all the products
+        products = Product.objects.all()
+        print(products)
+        return render(request, "show_product.html", {"products": products})
+    except Exception as ex:
+        return render(request, "error.html", {"message": f"Exception occur: {ex}"})
+
+
+def show_update_form(request):
+    """show the update form and show all the available product in dropdown from the database so easily can update the product
+
+    Args:
+        request (HttpRequest): Incoming client Http Request
+
+    Returns:
+        HttpResponse: On success render the update_product page with list of the products available in the database
+        On error render the error page with the message
+    """
+    try:
+        # get all the products
+        products = Product.objects.all()
+        return render(request, "update_product.html", {"products": products})
+    except Exception as ex:
+        return render(request, "error.html", {"message": f"Exception occur: {ex}"})
+
+
+def show_delete_form(request):
+    """show the delete form and show all the available product in dropdown from the database so easily can delete the product
+
+    Args:
+        request (HttpRequest): Incoming client Http Request
+
+    Returns:
+        HttpResponse: On success render the delete_product page with list of the products available in the database
+        On error render the error page with the message
+    """
+    try:
+        # get all the products
+        products = Product.objects.all()
+        return render(request, "delete_product.html", {"products": products})
+    except Exception as ex:
+        return render(request, "error.html", {"message": f"Exception occur: {ex}"})
+
+
 def remove_product(request):
     """deleting the product by the provided name
 
@@ -28,10 +84,10 @@ def remove_product(request):
 
 
 def show_product(request):
-    """searching one product form the database using name 
+    """searching one product form the database using name
 
     Args:
-        request (HttpReqest): Incoming Http Request made by the client
+        request (HttpRequest): Incoming Http Request made by the client
 
     Returns:
         HttpResponse: On Success render html page with that product on error return error.html with message
@@ -109,8 +165,8 @@ def update_product(request):
         HttpResponse: On success return the success.html and On error return the error.html with proper message
     """
     try:
+        name = request.POST["product"].split(";")[2]
         try:
-            name = request.POST["name"]
             # get the product from the database using name
             product = Product.objects.get(name=name)
         # raise exception if product not found in database
