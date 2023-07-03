@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Show Product Form</title>
+    <title>Product Details</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/show_product.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/show_products.css' %}" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   </head>
   <body>
-    <h2>Show Product Form</h2>
-    <form method="POST" action="/show-product">
-      {% csrf_token %}
-      <select id="name" name="name" required>
-        <option value="">Select a product</option>
-        {% for product in products %}
-        <option value="{{ product.name }}">{{ product.name }}</option>
-        {% endfor %}</select
-      ><br /><br />
-
-      <input type="submit" value="Show" />
-    </form>
+    <h1>Products</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Product ID</th>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Product Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</a></td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
     <form>
       <input type="button" value="Back" onclick="history.go(-1)" />
-  
     </form>
   </body>
 </html>

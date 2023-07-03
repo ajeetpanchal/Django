@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add a change event listener to the dropdown element
   dropdown.addEventListener("change", function () {
+    // to show the label and price, quantity input box
     $("label").show();
     $("#price").show();
     $("#quantity").show();
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     quantity.value = values[1];
   });
 });
-
+// jquery for hiding the label and price, quantity input box
 $(document).ready(function () {
   $("label").hide();
   $("#price").hide();

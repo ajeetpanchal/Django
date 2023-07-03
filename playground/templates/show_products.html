@@ -5,23 +5,39 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/show_products.css' %}" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/show_products.js' %}"></script>
   </head>
   <body>
     <h1>Products</h1>
-    <table>
+    <label>
+      <input type="checkbox" class="columnCheckbox" data-column="0" /> ID
+    </label>
+    <label>
+      <input type="checkbox" class="columnCheckbox" data-column="1" /> Name
+    </label>
+    <label>
+      <input type="checkbox" class="columnCheckbox" data-column="2" /> Price
+    </label>
+    <label>
+      <input type="checkbox" class="columnCheckbox" data-column="3" /> Quantity
+    </label>
+    <table id="Table">
       <thead>
         <tr>
-          <th>Product ID</th>
-          <th>Product Name</th>
-          <th>Product Price</th>
-          <th>Product Quantity</th>
+          <th onclick="sortTable(0)">Product ID</th>
+          <th onclick="sortTable(1)">Product Name</th>
+          <th onclick="sortTable(2)">Product Price</th>
+          <th onclick="sortTable(3)">Product Quantity</th>
         </tr>
       </thead>
       <tbody>
         {% for product in products %}
         <tr>
           <td>{{ product.id }}</td>
-          <td>{{ product.name }}</td>
+          <td>
+            <a href="show-product/{{product.name}}">{{ product.name }}</a>
+          </td>
           <td>{{ product.price }}</td>
           <td>{{ product.quantity }}</td>
         </tr>

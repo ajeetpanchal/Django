@@ -3,23 +3,27 @@
    text-align: center;
    margin-bottom: 20px;
  }
-/* Style for tables */
+
+ /* Style for tables */
  table {
    width: 100%;
    border-collapse: collapse;
  }
-/* Style for table headers and cells */
+
+ /* Style for table headers and cells */
  th,
  td {
    padding: 10px;
    text-align: left;
    border-bottom: 1px solid #ddd;
  }
-/* Style for table headers */
+
+ /* Style for table headers */
  th {
    background-color: #f5f5f5;
  }
-/* Style for button input fields */
+
+ /* Style for button input fields */
  input[type="button"] {
    background-color: #f44336;
    color: white;

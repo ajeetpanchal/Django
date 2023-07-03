@@ -17,7 +17,7 @@ def show_product_form(request):
         # get all the products
         products = Product.objects.all()
         print(products)
-        return render(request, "show_product.html", {"products": products})
+        return render(request, "show_product_form.html", {"products": products})
     except Exception as ex:
         return render(request, "error.html", {"message": f"Exception occur: {ex}"})
 
@@ -83,7 +83,7 @@ def remove_product(request):
         return render(request, "error.html", {"message": f"Exception occur {ex}"})
 
 
-def show_product(request):
+def show_product(request, name=None):
     """searching one product form the database using name
 
     Args:
@@ -95,12 +95,14 @@ def show_product(request):
     try:
         try:
             # get the product form the database using name
-            product = Product.objects.get(name=request.POST["name"])
+            if not name:
+                name = request.POST["name"]
+            product = Product.objects.get(name=name)
         except Product.DoesNotExist:
             # render error.html if product not found from the database
             return render(request, "error.html", {"message": "Product Not Exist"})
 
-        return render(request, "show_products.html", {"products": [product]})
+        return render(request, "show_product.html", {"product": product})
     except Exception as ex:
         return render(request, "error.html", {"message": f"Exception occur {ex}"})
 
