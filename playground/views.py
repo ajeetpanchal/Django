@@ -16,7 +16,6 @@ def show_product_form(request):
     try:
         # get all the products
         products = Product.objects.all()
-        print(products)
         return render(request, "show_product_form.html", {"products": products})
     except Exception as ex:
         return render(request, "error.html", {"message": f"Exception occur: {ex}"})

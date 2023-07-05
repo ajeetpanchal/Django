@@ -29,20 +29,28 @@ function sortTable(n) {
             //start by saying there should be no switching:
             shouldSwitch = false;
             /*Get the two elements you want to compare,
-            one from current row and one from the next:*/
+            one from the current row and one from the next:*/
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
-            if (dir == "asc") {
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
+            if (dir === "asc") {
+                if (isNumeric(x.innerHTML) && isNumeric(y.innerHTML)) {
+                    if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
                 }
-            } else if (dir == "desc") {
-                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                    //if so, mark as a switch and break the loop:
+            } else if (dir === "desc") {
+                if (isNumeric(x.innerHTML) && isNumeric(y.innerHTML)) {
+                    if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     shouldSwitch = true;
                     break;
                 }
@@ -58,10 +66,15 @@ function sortTable(n) {
         } else {
             /*If no switching has been done AND the direction is "asc",
             set the direction to "desc" and run the while loop again.*/
-            if (switchcount == 0 && dir == "asc") {
+            if (switchcount === 0 && dir === "asc") {
                 dir = "desc";
                 switching = true;
             }
         }
     }
+}
+
+//check is given value is numeric and float or not if yes return true else return false
+function isNumeric(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value);
 }
